@@ -11,7 +11,6 @@ VERSION = '1.0'
 
 SPIDER_MODULES = ['cbc.spiders']
 NEWSPIDER_MODULE = 'cbc.spiders'
-#USER_AGENT = 'cbc/1.0'
 USER_AGENT = '%s/%s' % (BOT_NAME, VERSION)
 
 DATABASE = {'drivername': 'postgres',

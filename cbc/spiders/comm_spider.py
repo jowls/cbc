@@ -15,6 +15,7 @@ class CommSpider(BaseSpider):
     session = sm()
     result = (session.execute("select * from stories where crawled_on is null and comments_open is not False"))  # lint:ok
     abort = False
+
     try:
         start_url_brackets = result.first()['link']
         print start_url_brackets
@@ -25,16 +26,8 @@ class CommSpider(BaseSpider):
         #start_urls = ["http://www.cbc.ca/news/canada/new-brunswick/story/2013/06/16/nb-car-crash.html"]
     except:
         abort = True
+
     pipelines = ['comm_pipe']
-
-    #def __init__(self):
-        #time.sleep(60)
-
-        #time.sleep(60)
-    #def __del__(self):
-        #self.selenium.stop()
-        #print self.verificationErrors
-     #   BaseSpider.__del__(self)
 
     def parse(self, response):
         items = []
