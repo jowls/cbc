@@ -22,7 +22,6 @@ class CBCSpider(BaseSpider):
             item = LinkItem()
             item['title'] = site.select('a/text()').extract()
             item['link'] = site.select('a/@href').extract()
-            #item['desc'] = "null"
             items.append(item)
         time.sleep(randrange(45, 75))
         return items
