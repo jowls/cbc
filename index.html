@@ -31,37 +31,120 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h1>
+<a name="web-scraping-with-raspberry-pi" class="anchor" href="#web-scraping-with-raspberry-pi"><span class="octicon octicon-link"></span></a>Web Scraping with Raspberry Pi</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<h2>
+<a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>About</h2>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<p>A small project involving web scraping javascript content using: the raspberry pi, python, scrapy and selenium/firefox webdriver. Results are stored in postgresql using the sqlalchemy library. Statistics about the database can optionally be served over the web through a lightweight golang process.</p>
+
+<p>The roadmap is to integrate the nltk library to perform basic sentiment analysis on news articles, and the comments they elicit.</p>
+
+<p>Coming soon.</p>
+
+<h2>
+<a name="readme-contents" class="anchor" href="#readme-contents"><span class="octicon octicon-link"></span></a>Readme Contents</h2>
+
+<ul>
+<li>Dependencies</li>
+<li>Setup Pi</li>
+<li>Special Requirements</li>
+<li>Code</li>
+<li>Configuration</li>
+<li>Golang Webserver (Optional)</li>
+</ul><h2>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies:</h2>
+
+<ul>
+<li>psycopg2</li>
+<li>scrapy</li>
+<li>sqlalchemy</li>
+<li>pyvirtualdisplay</li>
+<li>selenium</li>
+<li>Xvfb</li>
+</ul><h2>
+<a name="setup-pi" class="anchor" href="#setup-pi"><span class="octicon octicon-link"></span></a>Setup Pi</h2>
+
+<h3>
+<a name="install-raspbian-wheezy-on-a-new-sd-card-and-boot-up-pi" class="anchor" href="#install-raspbian-wheezy-on-a-new-sd-card-and-boot-up-pi"><span class="octicon octicon-link"></span></a>Install raspbian wheezy on a new SD card and boot up Pi.</h3>
+
+<h3>
+<a name="install-dependencies" class="anchor" href="#install-dependencies"><span class="octicon octicon-link"></span></a>Install Dependencies</h3>
+
+<p>Install postgresql (9.1.9 at time of writing)</p>
+
+<pre><code>sudo apt-get install postgresql
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>Install firefox (iceweasel 10.0.12esr at time of writing) and pip</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<pre><code>sudo apt-get install iceweasel python-pip
+</code></pre>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>Install additional python dependencies using pip (scrapy 16.5, selenium 2.33.0 at time of writing)</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<pre><code>sudo pip install -U scrapy selenium
+</code></pre>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<h2>
+<a name="special-requirements" class="anchor" href="#special-requirements"><span class="octicon octicon-link"></span></a>Special Requirements</h2>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<p>Because of the Pi's limited CPU/GPU, you should make the following adjustment to selenium's firefox webdriver code.
+sudo nano /usr/local/lib/python2.7/dist-packages/selenium/webdriver/firefox/firefox_binary.py</p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>on line 91 in the wait_until_connectable function, change <code>count == 30</code> to be <code>count == 80</code> in order to give firefox some extra time to warm up.</p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<h2>
+<a name="code" class="anchor" href="#code"><span class="octicon octicon-link"></span></a>Code</h2>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>Clone the repository from GitHub</p>
+
+<pre><code>git clone https://github.com/jowls/cbc.git
+</code></pre>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+<pre><code>Testing 1-2-3..
+</code></pre>
+
+<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+
+<h2>
+<a name="cron-job-configuration" class="anchor" href="#cron-job-configuration"><span class="octicon octicon-link"></span></a>Cron Job Configuration:</h2>
+
+<p>"scrapy crawl cbc" will run the spider manually, or put this in /etc/crontab to schedule some crawls:</p>
+
+<pre><code>17 * * * * pi /home/pi/cbc/crawl.sh &gt;&gt; /home/pi/cronwork.log 2&gt;&amp;1
+37 * * * * root sudo killall crawl.sh
+38 * * * * root sudo killall Xvfb
+39 * * * * root sudo killall iceweasel
+</code></pre>
+
+<p>(The above runs at 17m past the hour - on raspbian wheezy)</p>
+
+<h2>
+<a name="golang-webserver-optional" class="anchor" href="#golang-webserver-optional"><span class="octicon octicon-link"></span></a>Golang Webserver (Optional)</h2>
+
+<h4>
+<a name="install-go" class="anchor" href="#install-go"><span class="octicon octicon-link"></span></a>Install go</h4>
+
+<h4>
+<a name="build-go-code" class="anchor" href="#build-go-code"><span class="octicon octicon-link"></span></a>Build go code</h4>
+
+<pre><code>go build web.go
+</code></pre>
+
+<h4>
+<a name="run-go-code" class="anchor" href="#run-go-code"><span class="octicon octicon-link"></span></a>Run go code</h4>
+
+<p>It must be run as sudo because it will be serving on port 80.</p>
+
+<pre><code>sudo ./web&amp;
+</code></pre>
+
       </section>
     </div>
 
@@ -73,7 +156,17 @@ $ git checkout gh-pages
       </footer>
     </div>
 
-    
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-42365313-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
 
   </body>
 </html>
