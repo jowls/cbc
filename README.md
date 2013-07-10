@@ -10,48 +10,56 @@ Coming soon.
 
 ## Readme Contents
 
-    Setup Pi
-    Code
-    Configuration
-    Golang Webserver (Optional)
+* Dependencies
+* Setup Pi
+* Special Requirements
+* Code
+* Configuration
+* Golang Webserver (Optional)
 
 ## Dependencies:
 
-psycopg2
-scrapy
-sqlalchemy
+* psycopg2
+* scrapy
+* sqlalchemy
+* pyvirtualdisplay
+* selenium
+* Xvfb
 
 ## Setup Pi
-Install Dependencies
 
-Install raspbian wheezy on a new SD card and boot up Pi.
+### Install raspbian wheezy on a new SD card and boot up Pi.
+
+### Install Dependencies
 
 Install postgresql (9.1.9 at time of writing)
-	sudo apt-get install postgresql
+
+    sudo apt-get install postgresql
 
 Install firefox (iceweasel 10.0.12esr at time of writing) and pip
-	sudo apt-get install iceweasel python-pip
+
+    sudo apt-get install iceweasel python-pip
 
 Install additional python dependencies using pip (scrapy 16.5, selenium 2.33.0 at time of writing)
-	sudo pip install -U scrapy selenium
+
+    sudo pip install -U scrapy selenium
 
 ## Special Requirements
 
 Because of the Pi's limited CPU/GPU, you should make the following adjustment to selenium's firefox webdriver code.
 sudo nano /usr/local/lib/python2.7/dist-packages/selenium/webdriver/firefox/firefox_binary.py
 
-on line 91 in the wait_until_connectable function, change count == 30 to be
-count == 80
-
-in order to give firefox some extra time to warm up.
+on line 91 in the wait_until_connectable function, change `count == 30` to be `count == 80` in order to give firefox some extra time to warm up.
 
 ## Code
 
 Clone the repository from GitHub
-git clone https://github.com/jowls/abcd.git
+
+    git clone https://github.com/jowls/cbc.git
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-	Testing 1-2-3...
+
+    Testing 1-2-3..
 
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
 
@@ -70,12 +78,13 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 
 ## Golang Webserver (Optional)
 
-Install go
+#### Install go
 
-Build go code
-	go build web.go
+#### Build go code
 
-Run go code
+    go build web.go
+
+#### Run go code
 
 It must be run as sudo because it will be serving on port 80.
 
