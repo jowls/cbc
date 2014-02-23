@@ -6,7 +6,7 @@ A small project involving web scraping javascript content using: the raspberry p
 
 The roadmap is to integrate the nltk library to perform basic sentiment analysis on news articles, and the comments they elicit.
 
-Coming soon. You will see content being published in bits and pieces, but the site is still under heavy construction; please do not use this page as a tutorial yet. Contact me on github or at jowls@outlook.com to kick me in the.
+Coming soon. You will see content being published in bits and pieces, but the site is still under heavy construction; please do not use this page as a tutorial yet. Contact me on github to kick me in the.
 
 ##Readme Contents
 
